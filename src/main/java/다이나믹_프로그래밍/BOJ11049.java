@@ -35,62 +35,84 @@ public class BOJ11049 {
     public static void main(String arg[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int data_size = Integer.parseInt(br.readLine());
-        List<Integer> input = new ArrayList<>();
-        List<Integer> input2 = new ArrayList<>();
+        int [][] input = new int[data_size][2];
+        int [][] sum = new int[data_size][data_size];
         for (int x = 0; x < data_size; x++) {
             String tmp = br.readLine();
-            input.add(Integer.parseInt(tmp.split(" ")[0]));
-            input2.add(Integer.parseInt(tmp.split(" ")[1]));
+            input[x][0] = Integer.parseInt(tmp.split(" ")[0]);
+            input[x][1] = Integer.parseInt(tmp.split(" ")[1]);
         }
-        int result = 0;
-        int min = 0;
-        int a = 0;
-        int b = 0;
-        int c = 0;
-        List<Integer> minIndex;
-        List<Integer> minA;
-        List<Integer> minB;
-        List<Integer> minC;
-        while (input.size() > 1) {
-            min = -1;
-            minIndex = new ArrayList<>();
-            minA = new ArrayList<>();
-            minB = new ArrayList<>();
-            minC = new ArrayList<>();
-            a = 0;
-            b = 0;
-            c = 0;
-            for (int x = 0; x <= input.size()-2; x++) {
-                a = input.get(x);
-                b = input2.get(x);
-                c = input2.get(x+1);
-                if (min == -1) {
-                    min = a * b * c;
-                    minIndex.add(x);
-                    minA.add(a);
-                    minB.add(b);
-                    minC.add(c);
-                } else if(a*b*c <= min) {
-                    if (!(minIndex.lastIndexOf(x) > -1)) {
-                        min = a * b * c;
-                        minIndex.add(x);
-                        minA.add(a);
-                        minB.add(b);
-                        minC.add(c);
+        for (int x = 2; x <= data_size; x++) {
+            for (int y = 0; y <= data_size - x; y++) {
+                int j = x+y-1;
+                sum[y][j] = Integer.MAX_VALUE;
+                for (int z = y; z < j; z++) {
+                    int cost = sum[y][z] + sum[z+1][j] + input[y][0] * input[z+1][0] * input[j][1];
+                    if (cost < sum[y][j]) {
+                        sum[y][j] = cost;
                     }
                 }
             }
-            for (int x = minIndex.size()-1; x >= 0; x--) {
-                result += min;
-                int index = minIndex.get(x);
-                input.remove(index);
-                input.remove(index);
-                input2.remove(index);
-                input2.remove(index);
-                input.add(index,minA.get(x));
-                input2.add(index,minC.get(x));
-            }
         }
-        System.out.println(result);
+        System.out.println(sum[0][data_size-1]);
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        int data_size = Integer.parseInt(br.readLine());
+//        List<Integer> input = new ArrayList<>();
+//        List<Integer> input2 = new ArrayList<>();
+//        for (int x = 0; x < data_size; x++) {
+//            String tmp = br.readLine();
+//            input.add(Integer.parseInt(tmp.split(" ")[0]));
+//            input2.add(Integer.parseInt(tmp.split(" ")[1]));
+//        }
+//        int result = 0;
+//        int min = 0;
+//        int a = 0;
+//        int b = 0;
+//        int c = 0;
+//        List<Integer> minIndex;
+//        List<Integer> minA;
+//        List<Integer> minB;
+//        List<Integer> minC;
+//        while (input.size() > 1) {
+//            min = -1;
+//            minIndex = new ArrayList<>();
+//            minA = new ArrayList<>();
+//            minB = new ArrayList<>();
+//            minC = new ArrayList<>();
+//            a = 0;
+//            b = 0;
+//            c = 0;
+//            for (int x = 0; x <= input.size()-2; x++) {
+//                a = input.get(x);
+//                b = input2.get(x);
+//                c = input2.get(x+1);
+//                if (min == -1) {
+//                    min = a * b * c;
+//                    minIndex.add(x);
+//                    minA.add(a);
+//                    minB.add(b);
+//                    minC.add(c);
+//                } else if(a*b*c <= min) {
+//                    if (!(minIndex.lastIndexOf(x) > -1)) {
+//                        min = a * b * c;
+//                        minIndex.add(x);
+//                        minA.add(a);
+//                        minB.add(b);
+//                        minC.add(c);
+//                    }
+//                }
+//            }
+//            for (int x = minIndex.size()-1; x >= 0; x--) {
+//                result += min;
+//                int index = minIndex.get(x);
+//                input.remove(index);
+//                input.remove(index);
+//                input2.remove(index);
+//                input2.remove(index);
+//                input.add(index,minA.get(x));
+//                input2.add(index,minC.get(x));
+//            }
+//        }
+//        System.out.println(result);
     }
 }
