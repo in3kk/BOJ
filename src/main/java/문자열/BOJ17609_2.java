@@ -7,7 +7,7 @@ import java.util.*;
 
 /**
  * ArrayList<List<String>> -> ArrayList<String> 형태로 변경
- * 루프마다 새롭게 리스트를 생성하는 방식에서 StringBuilder를 이용해 delete, reverse 수행
+ * 루프마다 새롭게 리스트를 생성하는 방식에서 StringBuilder 를 이용해 delete, reverse 수행
  */
 public class BOJ17609_2 {
     public static void main(String[] arg) throws IOException {
