@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
-
+//123
 public class BOJ15685 {
     // 위 - 오 - 아래 - 왼 순서
     static int[] moveX = { 0, 1, 0, -1 };
