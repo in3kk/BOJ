@@ -23,7 +23,7 @@ public class logging {
         String line;
         int token = 0;
         Pattern [] pattern1 = new Pattern[2];
-        pattern1[0] = Pattern.compile("\\[권한이없습니다]");
+        pattern1[0] = Pattern.compile("[A-z,0-9]*\\[권한이 없습니다\\.]");
         pattern1[1] = Pattern.compile("\\[na:na]");
         int cnt  = 0;
         while ((line = reader.readLine()) != null) {
